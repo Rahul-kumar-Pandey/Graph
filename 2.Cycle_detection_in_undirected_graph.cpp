@@ -7,6 +7,36 @@ void addedge(int x,int y){
     g[x].push_back(y);
     g[y].push_back(x);
 }
+//using bfs
+bool bfs(int u)
+	{
+	    map< int, bool> visited;
+	    //make a pair of queue where the first element is node and second is its parent
+		queue<pair<int,int>> q;
+		q.push(make_pair(u,-1));
+		visited[u]=true;
+		while (!q.empty())
+		{
+			pair<int,int> front_element = q.front();
+			q.pop();
+	
+			for (auto nbr : (g[front_element.first]))
+			{
+				if(!visited[nbr])
+				{
+				    visited[nbr]=true;
+				    q.push(make_pair(nbr,front_element.first));
+				}
+				//else when nbr is visited and it is not equal to front_element.second(which is parent)
+				//in other words we found a cross edge
+				else if(visited[nbr]==true && nbr!=front_element.second)
+				    return true;
+			}
+		}
+		return false;
+}
+
+//using dfs
 bool cycle_helper(int node,map<int,bool>&visited,int parent){
     visited[node]=true;
     for(auto nbr:g[node]){
@@ -43,5 +73,8 @@ int main(){
     
     if(dfs()) cout<<"cycle exists in the graph\n";
     else    cout<<"NO cycle in this graph\n";
+    
+    if(bfs(0)) cout<<"YES\n";
+    else    cout<<"No\n";
 	return 0;
 }
