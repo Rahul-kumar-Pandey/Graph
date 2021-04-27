@@ -62,6 +62,7 @@ class Graph{
                 else
                     return true;
             }
+            delete [] rank;
             delete [] parent;
             return false;
         }
