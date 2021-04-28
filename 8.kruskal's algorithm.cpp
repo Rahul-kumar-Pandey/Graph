@@ -73,7 +73,7 @@ class Graph{
             int y=edge[2];
             
             //2.take that edge in mst if it doesnot form a cycle
-            if(s.find()!=s.find(y)){
+            if(s.find(x)!=s.find(y)){
                 s.make_union(x,y);
                 ans+=w;
             }
