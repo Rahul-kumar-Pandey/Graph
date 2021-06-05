@@ -3,18 +3,21 @@
 
 //cycle detection using dfs 
 bool isCyclicUtil(int v,vector<bool>&visited,vector<bool>&recStack,vector<int> adj[]){
-        visited[v]=true;
-        recStack[v]=true;
-        for(auto a:adj[v]){
-            if(!visited[a]){
-                if(isCyclicUtil(a,visited,recStack,adj))
-                    return true;
-            }
+	if(visited[v]==false){
+		visited[v]=true;
+        	recStack[v]=true;
+        	for(auto a:adj[v]){
+            		if(!visited[a]){
+                		if(isCyclicUtil(a,visited,recStack,adj))
+                    			return true;
+            		}
             
-            else if(visited[a] && recStack[a]){
-                return true;
-            }
-        }
+            		else if(visited[a] && recStack[a]){
+                		return true;
+            		}
+        	}
+	}
+ 
         recStack[v]=false;
         return false;
     }
