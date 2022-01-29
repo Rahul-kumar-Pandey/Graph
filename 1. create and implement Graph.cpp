@@ -46,8 +46,10 @@ class graph{
     }
     
     //find single source sortest path for unweighted graph
+    // distance calculation by level order traversal(bfs) is minimum in case of unweighted graph
     void bfs_sssp(T src){
         map<T,int>distance;
+	//THIS INDICATES NODES NOT VISITED 
         for(auto a:l){
             distance[a.first]=INT_MAX;
         }
@@ -58,12 +60,14 @@ class graph{
             T node =q.front();
             q.pop();
             for(auto nbr:l[node]){
-                if(distance[nbr.first]==INT_MAX){
-                    q.push(nbr.first);
-                    distance[nbr.first]=distance[node]+1;
+		T dest=nbr.first;   
+                if(distance[dest]==INT_MAX){
+                    q.push(dest);
+                    distance[dest]=distance[node]+1;
                 }
             }
         }
+	//NOW, PRINT DISTANCE OF EACH NODE FROM SOURCE
         
     }
     
