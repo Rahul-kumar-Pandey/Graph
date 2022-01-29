@@ -3,6 +3,8 @@ using namespace std;
 template<typename T>
 class graph{
   public:
+    
+    //l[source]->[{destination,weight},{},{}];
     map<T,list<pair<T,int>>>l;
     
     //make graph
@@ -83,7 +85,9 @@ class graph{
 
 int main(){
     graph<char>g;
-    g.addEdge('0', '1',4, 0);
+	
+	//source,destination,weight,isbidirectional
+    	g.addEdge('0', '1',4, 0);
 	g.addEdge('0', '7',8, 0);
 	g.addEdge('1', '7',11, 0);
 	g.addEdge('1', '2',8, 0);
