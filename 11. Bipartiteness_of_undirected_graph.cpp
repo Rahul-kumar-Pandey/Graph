@@ -4,12 +4,18 @@
 #define U unsigned int
 #define pb push_back
 using namespace std;
+
+//BIPARTITE GRAPH: I CAN DIVIDE ALL VERTICES IN TWO SETS(SET1 AND SET2) SUCH THAT ALL EDGES ARE FROM SET1 TO SET2
+//IDEA: TWO COLORING METHOD (EVERY VERTEX OF SET1 HAS SAME COLOR AND EVERY VERTEX OF SET2 HAS SAME COLOR)
+
 map<int,list<int>>G;
+
 //function to add Edge
 void addEdge(int x,int y){
 	G[x].pb(y);
 	G[y].pb(x);
 }
+
 //bfs function to check whether a graph is bipartite or not
 bool isBipartite(){
 	//vector to store color of vertex 
@@ -27,7 +33,7 @@ bool isBipartite(){
 	    int node=i.first;
 	    //if not coloured
 	    if(colorarr[node]==-1){
-	        //colouring with 0 i.e. red
+	        //colouring with 0 (0 ->RED , 1 ->BLUE)
             q.push({ node, 0 });
             colorarr[node] = 0;
 	    }
@@ -61,6 +67,10 @@ bool isBipartite(){
 	
 	return true;
 }
+<.........................................................................................................>
+//DFS TO CHECK BIPARTITENESS
+bool dfs()
+
 int main(){
 
  	  addEdge(1, 2);
