@@ -29,16 +29,16 @@ class graph{
         map<T,bool>visited;
         queue<T>q;
         q.push(src);
+	visited[src]=true;
         while(!q.empty()){
             T node =q.front();
             q.pop();
-            if(!visited[node]){
-                cout<<node<<" -> ";
-                visited[node]=true;
-            }
+	    cout<<node<<" ";
+            
             for(auto x:l[node]){
-                if(!visited[x.first]){
-                    q.push(x.first);
+                if(!visited[x]){
+                    q.push(x);
+		    visited[x]=true;
                 }
             }
         }
@@ -75,7 +75,7 @@ class graph{
         visited[src]=true;
         cout<<src<<"->";
         for(auto a:l[src]){
-            if(!visited[a.first]){
+            if(!visited[a.first]){	//a.first means node adjacent to src . since l[source]->[{destination,weight},{},{}]
                 dfs_helper(a.first,visited);
             }
         }
