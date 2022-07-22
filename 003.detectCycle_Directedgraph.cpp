@@ -3,7 +3,6 @@
 
 //cycle detection using dfs 
 bool isCyclicUtil(int v,vector<bool>&visited,vector<bool>&recStack,vector<int> adj[]){
-	if(visited[v]==false){
 		visited[v]=true;
         	recStack[v]=true;
         	for(auto a:adj[v]){
@@ -16,10 +15,9 @@ bool isCyclicUtil(int v,vector<bool>&visited,vector<bool>&recStack,vector<int> a
                 		return true;
             		}
         	}
-	}
  
-        recStack[v]=false;
-        return false;
+		recStack[v]=false;
+		return false;
     }
 	bool isCyclic(int V, vector<int> adj[]) {
 	   	// Mark all the vertices as not visited and not part of recursion 
@@ -35,3 +33,15 @@ bool isCyclicUtil(int v,vector<bool>&visited,vector<bool>&recStack,vector<int> a
 
 		return false;
 	}
+
+/***
+testing testcase
+1->{2}
+2->{3,4}
+3->{7,8}
+4->{5}
+5->{6}
+6->{4}
+7->{}
+8->{7}
+***/
