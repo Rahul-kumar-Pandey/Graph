@@ -3,6 +3,8 @@
 #define mod 1000000007
 using namespace std;
 template<typename T>
+
+//Topological sorting is only possible for DAG
 class graph{
     map<T,list<T>>l;
     public:
@@ -10,7 +12,7 @@ class graph{
         l[x].push_back(y);
     }
     
-        //using bfs
+        //using bfs(kahn's algorithm)
         void topological_sort(){
             //indegree
             map<T,int>indegree;
@@ -50,7 +52,7 @@ class graph{
             }
         }
   
-  
+  /*************************************************************************************/
         //using dfs
         void dfs_helper(T src,map<T,bool>&visited,list<T>&ordering){
             visited[src]=true;
