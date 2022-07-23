@@ -1,6 +1,50 @@
-//cycle detection using bfs
+//cycle detection using bfs(kahn's algo)
+/*
+idea: Topological sort can be applied for DAG ,so if a graph has cycle then we cannot get topo sort .
+*/
+bool isCycleUsingTopological_sort(){
+            //indegree
+            map<T,int>indegree;
+            //make indegree of all nodes zero
+            for(auto v:l){
+                indegree[v.first]=0;
+            }
+            
+            //update indegree by traversing edges 
+            for(auto p:l){
+                T x=p.first;
+                for(auto y:p.second){
+                    indegree[y]++;
+                }
+            }
+            
+            //bfs
+            queue<T>q;
+            //step 1. find nodes with 0 indegree
+            for(auto v:l){
+                if(indegree[v.first]==0)
+                    q.push(v.first);
+            }
+	    int cnt=0;            
+            //start removing elements from the queue
+            while(!q.empty()){
+                T node =q.front();
+                cnt++;	
+                q.pop();
+                
+                //iterate over nbrs of that node and reduce their indegree
+                for(auto nbr:l[node]){
+                    indegree[nbr]--;
+                    if(indegree[nbr]==0)
+                        q.push(nbr);
+                }
+            }
+	if(cnt==V) return false;
+	return true;
+}
 
 
+/***************************************************************************************************/
 //cycle detection using dfs 
 bool isCyclicUtil(int v,vector<bool>&visited,vector<bool>&recStack,vector<int> adj[]){
 		visited[v]=true;
